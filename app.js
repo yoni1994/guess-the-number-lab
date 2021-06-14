@@ -10,6 +10,7 @@ const game = {
         alert(this.secretNum)
         do {
             this.prevGuesses.push(this.getGuess())
+            this.resetRange()
             this.render()
         } 
         while(this.prevGuesses[this.prevGuesses.length - 1] !== this.secretNum)
@@ -44,9 +45,14 @@ const game = {
             \nPrevious guesses: ${this.prevGuesses.join(", ")}`)
         }
     },
-    // resetRange: function() {
-
-    // }
+    resetRange: function() {
+        if (this.prevGuesses[this.prevGuesses.length - 1] > this.secretNum) {
+            this.biggestNum = this.prevGuesses[this.prevGuesses.length - 1]
+        }
+        else {
+            this.smallestNum = this.prevGuesses[this.prevGuesses.length - 1]
+        }
+    }
   }
 
 game.play()
